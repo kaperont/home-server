@@ -14,6 +14,6 @@ const users = require('./routes/api/users');
 
 app.use('/api/users', users);
 
-const port = 3223;
+const port = 5050;
 
 app.listen(port, () => console.log('Server started on port ' + port));

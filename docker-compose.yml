@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  home-server:
+    container_name: home-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
+    volumes:
+      - ./server:/usr/src/server
+      - /usr/src/server/node_modules
+    ports:
+      - "5050:5050"
+    restart: unless-stopped
+    image: home-server:1.0.0

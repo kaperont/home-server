@@ -18,10 +18,18 @@ router.post('/', async (req, res) => {
 
 
 async function loadUsersCollection() {
+
+    const connectionString = process.env.MONGO_CONNECTION_STRING;
     
-    const client = await mongodb.MongoClient.connect('mongodb://kaperont:mnDpwd4KA@peront.ddns.net:27017/?authSource=admin', {
-        useNewUrlParser: true
-    });
+    try {
+        const client = await mongodb.MongoClient.connect(connectionString, {
+            useNewUrlParser: true
+        });
+    }
+    catch(err) {
+        console.log(err);
+        console.log("Could not connect to the database.\nMongo Connection String: ", connectionString);
+    }
 
     
 
