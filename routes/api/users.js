@@ -19,21 +19,23 @@ router.post('/', async (req, res) => {
 
 async function loadUsersCollection() {
 
-    const connectionString = process.env.MONGO_CONNECTION_STRING;
+    const MongoURI = process.env.MONGO_CONNECTION_STRING;
     
     try {
-        const client = await mongodb.MongoClient.connect(connectionString, {
+
+        console.log("Attempting connection to MongoDB at:");
+        console.log(MongoURI);
+
+        const client = await mongodb.MongoClient.connect(MongoURI, {
             useNewUrlParser: true
         });
+
+        return client.db('home').collection('Users');
     }
     catch(err) {
         console.log(err);
-        console.log("Could not connect to the database.\nMongo Connection String: ", connectionString);
+        console.log("Could not connect to the database.\nMongo Connection String: ", MongoURI);
     }
-
-    
-
-    return client.db('home').collection('Users');
 
 }
 

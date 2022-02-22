@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
-      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
+      - MongoURI=${MongoURI}
     volumes:
       - ./:/usr/src/server
       - /usr/src/server/node_modules
